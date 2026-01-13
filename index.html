@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>McBuckets Space</title>
+    <title>McBuckets Corner</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             color: #139417;
             text-decoration: none;
         }
+
     </style>
 </head>
 <body>
@@ -26,7 +27,7 @@
         <div class="gray-square"></div>
         <img src="images/avatar_sit.png" alt="Peronal Avatar sitting" class="avatar-image">
         <img src="images/welcome_header.gif" alt="Welcome animation" class="header-gif">
-        <h1 class="site-title">McBuckets.neocities.org</h1>
+        <h1 class="site-title">to McBuckets' Corner</h1>
     </div>
 </div>
 
@@ -122,7 +123,7 @@
         <!-- Latest Section -->
         <div class="latest-section">
             <h2 class="latest-title">Latest From Me!</h2>
-            <p class="latest-project">This Website!!</p>
+            <p class="latest-project">This Website!! (WIP)</p>
         </div>
 
         <!-- Comment Box -->
@@ -154,7 +155,7 @@
         <nav class="nav-menu">
         <div class="nav-box">
             <img src="images/home_nav.png" alt="Home icon" class="nav-icon-home">
-            <p class="nav-text-home"><a href="neocities_cite.html">Home</a></p>
+            <p class="nav-text-home"><a href="index.html">Home</a></p>
 
             <img src="images/me_nav.png" alt="Me icon" class="nav-icon-me">
             <p class="nav-text-me"><a href="about.html">Me?!</a></p>
@@ -185,34 +186,42 @@
 <script src="script.js"></script>
 <script>
     const username = "McBuckets24";
-    const apiUrl = `https://lastfm-last-played.biancarosa.com.br/McBuckets24/latest-song`;
+const apiUrl = `https://lastfm-last-played.biancarosa.com.br/McBuckets24/latest-song`;
 
-
+function loadLastFmSong() {
   fetch(apiUrl)
-  .then(res => res.json())
-  .then(data => {
-    const track = data.track;
+    .then(res => res.json())
+    .then(data => {
+      const track = data.track;
 
-    // Set song name (this already worked)
-    document.getElementById("song-name").textContent = "Last Played Song: " + track.name;
+      // Set song info with formatting
+      document.getElementById("song-name").textContent = "Last Played Song: " + track.name;
+      document.getElementById("artist-name").textContent = "Artist: " + track.artist["#text"];
+      document.getElementById("album-name").textContent = "Album: " + track.album["#text"];
 
-    // Correctly access nested artist and album text
-    document.getElementById("artist-name").textContent = "Artist: " + track.artist["#text"];
-    document.getElementById("album-name").textContent = "Album: " + track.album["#text"];
+      // Album image: pick a size, e.g., 2 = large
+      const albumImg = track.image[2]["#text"];
+      document.getElementById("album-img").src = albumImg;
 
-    // Album image: pick a size, e.g., 2 = large
-    const albumImg = track.image[2]["#text"];
-    document.getElementById("album-img").src = albumImg;
-  })
-  .catch(err => {
-    console.error("Could not load last played song:", err);
-    document.getElementById("lastfm-song").textContent = "Failed to load song.";
-  });
-  // Function to load the last played song
-    loadLastFmSong();
+      console.log("Successfully loaded Last.fm song");
+    })
+    .catch(err => {
+      console.error("Could not load last played song:", err);
 
-  // Refresh every 60 seconds (60000 ms)
-  setInterval(loadLastFmSong, 60000);
+      // Show default with same formatting
+      document.getElementById("song-name").textContent = "Last Played Song: Ikareta Baby - Fishmans";
+      document.getElementById("artist-name").textContent = "Artist: Fishmans";
+      document.getElementById("album-name").textContent = "Album: 98.12.28 Otokotachi No Wakare";
+      // Optional: set a default album image
+      // document.getElementById("album-img").src = "images/default-album.webp";
+    });
+}
+
+// Load on page load
+loadLastFmSong();
+
+// Refresh every 60 seconds
+setInterval(loadLastFmSong, 60000);
 </script>
 
 </body>
