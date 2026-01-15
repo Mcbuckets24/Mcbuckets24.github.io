@@ -1285,8 +1285,23 @@ z-index: 100;
 
 
 
+body {
+    cursor: url('images/spork-cursor.png'), auto;
+}
 
+/* For clickable elements */
+a, button {
+    cursor: url('images/spork-cursor.png'), pointer;
+}
 
+/* For text input areas */
+input, textarea {
+    cursor: url('images/spork-cursor.png'), text;
+}
+
+a, button {
+    cursor: pointer !important; /* Back to normal pointing hand */
+}
 
 
 
