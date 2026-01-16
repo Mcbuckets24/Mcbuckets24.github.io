@@ -13,7 +13,14 @@ body {
     justify-content: center;
     width: 100%;
     height: auto;
+    overflow-y: scroll;
+    scrollbar-width: none; /* hides scrollbar in Firefox */
 }
+
+.body::-webkit-scrollbar {
+    display: none;
+}
+
 
 
 .page-wrapper {
@@ -551,7 +558,6 @@ height: 30px;
     top: 130px;
     font-weight: 400;
     line-height: 35px;
-    text-decoration: line-through;
 }
 
 .nav-text-essays {
@@ -1392,6 +1398,7 @@ a, button {
     border: 3px dashed #139417;
     border-radius: 5px;
     padding: 15px;
+    margin-top:5px;
     margin-bottom: 15px;
     display: flex;
     align-items: center;
@@ -1450,4 +1457,16 @@ a, button {
 .essay-text h2,
 .essay-text h3 {
   text-align: center;
+}
+
+.essay-block {
+  position: relative; /* needed for z-index */
+  z-index: 1;         /* ensures it renders above other blocks */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.essay-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 2; /* lift above neighbors so borders/shadows show */
 }
