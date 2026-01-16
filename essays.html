@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://use.typekit.net/hxi4phm.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-
     <style>
         a {
             color: #FFFFFF;
@@ -61,29 +60,37 @@
 
     <!-- All Statuses List -->
     <div class="status-list-container">
-        <h2 class="status-list-title">The ramblings of my mind...</h2>
-        <ul id="statusList" class="status-list">
-            <li>Loading statuses...</li>
-        </ul>
+        <h2 class="status-list-title">I try writing from time to time</h2>
+       <ul class="essay-list">
+    <li class="essay-item">
+        <img src="images/koe-top.jpg" alt="Koe no Katachi" class="essay-image">
+        <div class="essay-content">
+            <h3 class="essay-title"><a href="koe.html">Koe no Katachi and Learning to Live</a></h3>
+            <p class="essay-subtitle">My messy magnum opus on the story closest to my heart and how it taught me to live and love</p>
+        </div>
+
+    </li>
+
+</ul>
     </div>
 
-    <!-- Current Status (moved inside info-box) -->
-    <div class="status-frame">
+
+
+<div class="status-frame">
         <div class="status-box">
             <h3 class="status-title">Current Status:</h3>
             <p class="status-text" id="statusText">Loading...</p>
         </div>
+</div>
+</div>
     </div>
 
-</div> <!-- Close info-box here -->
-
-</div> <!-- Close page-wrapper -->
-</div> <!-- Close header-frame -->
 
 
-<script src="script.js"></script>
+
+
 <script>
- async function loadLatestStatus() {
+    async function loadLatestStatus() {
     try {
         // Replace with your actual GitHub raw URL
         const response = await fetch('https://raw.githubusercontent.com/Mcbuckets24/Status-Tracker/main/statuses.json?' + Date.now());
@@ -107,38 +114,6 @@
 loadLatestStatus();
 // Auto-refresh every 5 minutes
 setInterval(loadLatestStatus, 300000);
-
-    async function loadAllStatuses() {
-    try {
-        const response = await fetch('https://raw.githubusercontent.com/Mcbuckets24/Status-Tracker/main/statuses.json?' + Date.now());
-        const statuses = await response.json();
-
-        const statusList = document.getElementById('statusList');
-
-        if (statuses.length > 0) {
-            statusList.innerHTML = statuses.map(status => {
-                const date = new Date(status.timestamp);
-                const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-
-                return `
-                    <li>
-                        ${status.status}
-                        <div class="status-timestamp">${formattedDate}</div>
-                    </li>
-                `;
-            }).join('');
-        } else {
-            statusList.innerHTML = '<li>No statuses found</li>';
-        }
-    } catch (error) {
-        console.error('Error loading statuses:', error);
-        document.getElementById('statusList').innerHTML = '<li>Failed to load statuses</li>';
-    }
-}
-
-loadAllStatuses();
-// Auto-refresh every 5 minutes
-setInterval(loadAllStatuses, 300000);
 </script>
 
 </body>
