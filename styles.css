@@ -1232,6 +1232,8 @@ z-index: 100;
     left: 0px; /* Distance from left edge of info-box */
     top: 0px; /* Distance from top of info-box */
     padding: 10px;
+    scrollbar-width: 2px;
+    scrollbar-color: #139417 transparent;
 }
 
 .status-list-title {
@@ -1267,20 +1269,8 @@ z-index: 100;
     font-style: italic;
 }
 
-/* Scrollbar styling */
-.status-list::-webkit-scrollbar {
-    scrollbar-width: none;
-    scrollbar-color: #139417 transparent;
-}
 
-.status-list::-webkit-scrollbar-track {
-    background: #142734;
-}
 
-.status-list::-webkit-scrollbar-thumb {
-    background: #139417;
-    border-radius: 4px;
-}
 
 
 
