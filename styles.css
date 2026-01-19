@@ -406,11 +406,11 @@ height: 30px;
 /* LATEST SECTION */
 .latest-section {
     position: absolute;
-    left: 49%;
+    left: 54.5%;
     transform: translateX(-50%);
     top: 510px;
     text-align: center;
-    width: 220px; /* Fixed width to contain text */
+    width: 150px; /* Fixed width to contain text */
 }
 
 .latest-title {
@@ -422,7 +422,7 @@ height: 30px;
 }
 
 .latest-project {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 31px;
     color: #FFFFFF;
     margin: 0;
@@ -433,7 +433,7 @@ height: 30px;
 /* COMMENT BOX */
 .comment-box {
     position: absolute;
-    width: 226px;
+    width: 300px;
     height: 216px;
     left: 11px;
     top: 503px;
