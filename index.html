@@ -119,7 +119,7 @@ git push
         <div class="album-cd"><img id="album-cd" src="images/windows_cd.png" alt="cd"></div>
         <div class="music-section">
             <div id="song-info">
-                <p id="song-name"></p>
+                <p id="song-name">Loading...</p>
                 <p id="artist-name"></p>
                 <p id="album-name"></p>
                 <p>Powered by <a href="https://github.com/biancarosa/lastfm-last-played" target="_blank">biancarosa</a></p>
@@ -132,24 +132,11 @@ git push
             <p class="latest-project">This Website!! (WIP)</p>
         </div>
 
-        <!-- Comment Box -->
-       <div class="comment-box">
-    <p class="comment-title">*Leave a comment*</p>
-    <div class="comment-line"></div>
+        <!-- Comment Box-->
+      <div class="comment-box">
+    <iframe src="https://www3.cbox.ws/box/?boxid=3551633&boxtag=0BRQDy" width="100%" height="450" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
+</div>
 
-   <!-- <div class="comment-form">
-        <input type="text" id="commentName" placeholder="Name" maxlength="30">
-        <textarea id="commentText" placeholder="Leave a comment..." maxlength="200"></textarea>
-        <button id="submitComment">Post</button>
-    </div>
-
-    <div class="comments-list" id="commentsList">
-        <p class="loading">Loading comments...</p>
-    </div>
-</div>-->
-
-
-        </div>
 
         <!-- Badges-->
         <div class="badges">
@@ -206,8 +193,21 @@ git push
 const apiUrl = `https://lastfm-last-played.biancarosa.com.br/McBuckets24/latest-song`;
 
 function loadLastFmSong() {
-  fetch(apiUrl)
-    .then(res => res.json())
+  // Show loading immediately
+  document.getElementById("song-name").textContent = "Loading...";
+
+  // Set a 5-second timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+    console.log("Last.fm request timed out, showing default");
+  }, 5000); // 5 second timeout
+
+  fetch(apiUrl, { signal: controller.signal })
+    .then(res => {
+      clearTimeout(timeoutId);
+      return res.json();
+    })
     .then(data => {
       const track = data.track;
 
@@ -216,20 +216,21 @@ function loadLastFmSong() {
       document.getElementById("artist-name").textContent = "Artist: " + track.artist["#text"];
       document.getElementById("album-name").textContent = "Album: " + track.album["#text"];
 
-      // Album image: pick a size, e.g., 2 = large
+      // Album image
       const albumImg = track.image[2]["#text"];
       document.getElementById("album-img").src = albumImg;
 
       console.log("Successfully loaded Last.fm song");
     })
     .catch(err => {
+      clearTimeout(timeoutId);
       console.error("Could not load last played song:", err);
 
-      // Show default with same formatting
+      // Show default immediately after timeout
       document.getElementById("song-name").textContent = "Last Played Song: Ikareta Baby - Fishmans";
       document.getElementById("artist-name").textContent = "Artist: Fishmans";
       document.getElementById("album-name").textContent = "Album: 98.12.28 Otokotachi No Wakare";
-      document.getElementById("album-img").src = "images/98.12.jpg";
+      document.getElementById("album-img").src = "images/98.12.jpg"; // Add a default image
     });
 }
 
@@ -238,6 +239,107 @@ loadLastFmSong();
 
 // Refresh every 60 seconds
 setInterval(loadLastFmSong, 60000);
+
+
+
+    // Load comments on page load
+loadComments();
+
+// Submit comment
+document.getElementById('submitComment').addEventListener('click', async () => {
+    const name = document.getElementById('commentName').value.trim();
+    const text = document.getElementById('commentText').value.trim();
+
+    if (!name || !text) {
+        alert('Please fill in both name and comment!');
+        return;
+    }
+
+    try {
+        const timestamp = Date.now();
+        const commentId = `comment_${timestamp}`;
+
+        const commentData = {
+            name: name,
+            text: text,
+            timestamp: timestamp,
+            date: new Date().toLocaleString()
+        };
+
+        // Store in shared storage (visible to all users)
+        await window.storage.set(commentId, JSON.stringify(commentData), true);
+
+        // Clear form
+        document.getElementById('commentName').value = '';
+        document.getElementById('commentText').value = '';
+
+        // Reload comments
+        await loadComments();
+
+        alert('Comment posted!');
+    } catch (error) {
+        console.error('Error posting comment:', error);
+        alert('Failed to post comment. Please try again.');
+    }
+});
+
+async function loadComments() {
+    const commentsList = document.getElementById('commentsList');
+
+    try {
+        commentsList.innerHTML = '<p class="loading">Loading comments...</p>';
+
+        // List all comment keys
+        const result = await window.storage.list('comment_', true);
+
+        if (!result || !result.keys || result.keys.length === 0) {
+            commentsList.innerHTML = '<p class="loading">No comments yet. Be the first!</p>';
+            return;
+        }
+
+        // Fetch all comments
+        const comments = [];
+        for (const key of result.keys) {
+            try {
+                const commentResult = await window.storage.get(key, true);
+                if (commentResult && commentResult.value) {
+                    const commentData = JSON.parse(commentResult.value);
+                    comments.push(commentData);
+                }
+            } catch (err) {
+                console.error('Error loading comment:', err);
+            }
+        }
+
+        // Sort by newest first
+        comments.sort((a, b) => b.timestamp - a.timestamp);
+
+        // Display comments
+        if (comments.length === 0) {
+            commentsList.innerHTML = '<p class="loading">No comments yet. Be the first!</p>';
+        } else {
+            commentsList.innerHTML = comments.map(c => `
+                <div class="comment-item">
+                    <div class="comment-author">${escapeHtml(c.name)}</div>
+                    <div class="comment-content">${escapeHtml(c.text)}</div>
+                    <div class="comment-date">${c.date}</div>
+                </div>
+            `).join('');
+        }
+    } catch (error) {
+        console.error('Error loading comments:', error);
+        commentsList.innerHTML = '<p class="loading">Failed to load comments.</p>';
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Auto-refresh comments every 30 seconds
+setInterval(loadComments, 30000);
 </script>
 
 </body>
