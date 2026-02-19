@@ -38,6 +38,10 @@ const artworks = [
   {
     img: "images/bunnies.jpg",
     link: "https://x.com/yura_inaho"
+  },
+  {
+    img: "images/fruit_art.jpg",
+    link: "https://x.com/ishidzuki655"
   }
 ];
 
