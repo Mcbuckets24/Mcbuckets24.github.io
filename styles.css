@@ -110,12 +110,13 @@ body {
     position: relative;
     width: 740px;
     min-height: 731px;
-    margin: 0 auto; /* Remove top margin */
+    margin: 0 auto;
     background: #323538;
     border: 3px dashed #139417;
     box-sizing: border-box;
     margin-top: -120px;
     border-radius: 10px;
+    overflow: show;
 }
 
 /* CD IMAGE */
@@ -686,10 +687,11 @@ height: 30px;
     position: absolute;
     width: 196.97px;
     height: 146.8px;
-    left: 25.5px; /* 647.16 - 623 = 24.16 */
-    top: 29px; /* 439.94 - 413 = 26.94 */
+    left: 25.5px;
+    top: 29px;
     border-radius: 5px;
     z-index: 3;
+    object-fit: cover;
 }
 
 /* MONITOR FRAME (the monitor border/case) */
@@ -944,6 +946,14 @@ background: #FFFFFF;
     z-index: 2;
 }
 
+.drawer-three{
+    position:absolute;
+    top:585px;
+    left:70px;
+    height: 105px;
+    width:190px;
+    z-index: 4;
+}
 
 /* INTERESTS PAGE */
 
@@ -1518,3 +1528,129 @@ a, button {
     font-size: 22px;
     line-height: 28px;
     }
+
+.photo-gallery {
+    position: absolute;
+    width: 700px;
+    top: 0px;
+    left: 7px;
+    max-height: 750px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scrollbar-width: 1px;
+    scrollbar-color: #139417 transparent;
+    column-count: 3;
+    column-gap: 15px;
+    padding: 10px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: block;
+    transition: transform 0.3s;
+    max-width: 100%;
+}
+
+.info-box-photos {
+    height: 1500px;
+    position: relative;
+    width: 740px;
+    margin: -120px auto 0 auto;
+    background: #323538;
+    border: 3px dashed #139417;
+    box-sizing: border-box;
+    margin-top: -120px;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.info-box--tall{
+    height: 1500px;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.02);
+}
+
+/* Lightbox overlay */
+.lightbox {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #139417;
+    border-radius: 5px;
+}
+
+/* Close button */
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close:hover {
+    color: #139417;
+}
+
+/* Make gallery images clickable */
+.photo-gallery img {
+    cursor: pointer;
+}
+
+
+.gallery-background {
+    position: absolute;
+    width: 740px;
+    height: 775px;
+    top: 745px; /* Position below info-box */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #323538;
+    border: 3px dashed #139417;
+    border-radius: 10px;
+    z-index: 5;
+}
+
+.credits-photos {
+    position: absolute;
+    bottom: -835px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 1000;
+
+}
+
+.credits-photos p {
+    font-size: 20px;
+    line-height: 14px;
+    color: #FFFFFF;
+    margin: 0;
+    text-align: center;
+}
