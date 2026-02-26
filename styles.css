@@ -1654,3 +1654,74 @@ a, button {
     margin: 0;
     text-align: center;
 }
+
+.videos-box{
+background:#000000;
+border: 5px solid #FFFFFF;
+position: absolute;
+z-index: 50;
+width: 340px;
+height:90px;
+left: 340px;
+top: 82px;
+
+}
+
+.videos-box p{
+position:relative;
+text-align: center;
+top:-10px;
+font-size: 35px;
+color:#FFFFFF;
+
+}
+
+.none{
+  color: #000000;
+  text-decoration: none;
+}
+
+
+.video-gallery {
+    position: absolute;
+    left: 7px;
+    max-height: 750px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #139417 transparent;
+    column-count: 3;
+    column-gap: 15px;
+    padding: 10px;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.video-gallery video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #139417;
+    display: block;
+    transition: transform 0.3s;
+    max-width: 100%;
+}
+
+.video-gallery video:hover {
+    transform: scale(1.02);
+    border-color: #0f7a12;
+}
+
+/* Scrollbar styling */
+.video-gallery::-webkit-scrollbar {
+    height: 8px;
+}
+
+.video-gallery::-webkit-scrollbar-track {
+    background: #142734;
+}
+
+.video-gallery::-webkit-scrollbar-thumb {
+    background: #139417;
+    border-radius: 4px;
+}
