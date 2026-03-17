@@ -58,6 +58,14 @@ body {
     z-index: 2;
 }
 
+.essay-banner{
+    position: relative;
+     width: 375px;
+    height: 225px;
+    left: 182.5px;
+    z-index: 2;
+}
+
 .gray-square {
     position: absolute;
     width: 61.26px;
