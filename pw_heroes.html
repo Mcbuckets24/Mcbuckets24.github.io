@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Wrestling is a Sport of Heroes</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/hxi4phm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="page-wrapper">
+  <div class="header-frame">
+    <div class="header-box">
+        <img src="images/markb.webp" alt="Briscoe vs Lethal" class="essay-banner">
+    </div>
+</div>
+
+
+    <div class = "cd-wrapper">
+        <img src="images/cd_spin.gif" alt="CD" class="cd-image">
+    </div>
+
+<div class="credits"><p><a href="credits.html">Credits</a></p></div>
+
+
+
+<div class="info-box">
+    <div class="essay-container">
+    <div class="essay-text">
+        <h2>Professional Wrestling is a Sport of Heroes</h2>
+        <h3>05.24.26</h3>
+        <p>Professional wrestling is a sport of heroes.</p>
+        <p>Every time I go to a wrestling show I cry. I don’t cry because it’s sad, I cry for what it means to me. I cry when I see heroes in the flesh, because it makes me realize how just a short couple years ago, professional wrestling saved my life. When I wanted nothing more than to not wake up, I held on because AEW was on Wednesday and I had to be there.
+</p>
+        <p>Professional wrestling is full of its fair share of incredible stories. Some fantastical and fabricated, but those just as real as mine and yours as well. People like Jon Moxley, like Mark Briscoe, like Katsuyori Shibata, like Mitsuharu Misawa, like Bryan Danielson, like Eddie Kingston. People who have faced, embraced, fought and survived death. Real genuine heroes. People who’ve shown me over time that it’s okay to be alive, that it’s okay to be you, and that it’s okay to cry.
+</p>
+        <p>Because for just as much as pro wrestling is remembered for its highs, its stories are shaped by its lows. Stories of failure and torment. Stories about fighting demons, about climbing mountaintops, about being you, about believing in you, about fighting for what’s right, about fighting for what you love.
+</p>
+        <p>Because professional wrestling will always be Earth’s greatest artform.</p>
+        <p>Professional wrestling is what I love. Professional wrestling is special. It fills me with life. It’s stupid, dangerous, goofy, and everything in between, but fuck, how can’t you love it.</p>
+        <p>Who knows if I’d be here today without pro wrestling, but thankfully I am here. Here for days like today. For days where I get to come here and surround myself with this beautiful community and look my heroes in the eyes. And realize that heroes aren’t people created in stories, heroes are people forged in the trenches of everyday life. People who continue to choose to live on. To be themselves. To die for what they love. And to give us all something to smile about.
+</p>
+        <p>Because a hero isn’t someone who can fly or turn invisible. A hero is someone who slays their demons. A hero is someone who survives loss and continues to carry the flag. A hero is someone who faces death but fights back to do the thing they love. A hero is someone who dies for what they believe in most. A hero is someone who fights for their dreams to see their dreams fight for them. A hero is someone who gives the hopeless children a reason to keep living.
+</p>
+        <p>A hero is a simple man.</p>
+        <p>And how lucky am I to have found this beautiful hobby and be surrounded by them at all times.</p>
+        <p>So thank you to pro wrestling. Thank you to the heroes who’ve taught me how to live. To the heroes who have unknowingly saved me time and time again. To the people who make this possible, to the community that loves it with me, and to all of you who continue to support me.</p>
+        <p>I love professional wrestling.</p>
+
+</div>
+</div>
+
+
+        <nav class="nav-menu">
+        <div class="nav-box">
+            <img src="images/home_nav.png" alt="Home icon" class="nav-icon-home">
+            <p class="nav-text-home"><a href="index.html">Home</a></p>
+
+            <img src="images/me_nav.png" alt="Me icon" class="nav-icon-me">
+            <p class="nav-text-me"><a href="about.html">Me?!</a></p>
+
+            <img src="images/videos_nav.png" alt="Videos icon" class="nav-icon-videos">
+            <p class="nav-text-videos"><a href="videos.html">Videos</a></p>
+
+            <img src="images/essay_nav.png" alt="Essays icon" class="nav-icon-essays">
+            <p class="nav-text-essays"><a href="essays.html">Essays</a></p>
+
+            <img src="images/status_nav.png" alt="Status icon" class="nav-icon-status">
+             <p class="nav-text-status"><a href="status.html">Status</a></p>
+        </div>
+    </nav>
+
+    <!-- Current Satus -->
+    <div class="status-frame">
+        <div class="status-box">
+            <h3 class="status-title">Current Status:</h3>
+            <p class="status-text" id="statusText">Loading...</p>
+        </div>
+    </div>
+    </div>
+  </div>
+<script>
+    async function loadLatestStatus() {
+    try {
+        // Replace with your actual GitHub raw URL
+        const response = await fetch('https://raw.githubusercontent.com/Mcbuckets24/Status-Tracker/main/statuses.json?' + Date.now());
+        const statuses = await response.json();
+
+        if (statuses.length > 0) {
+            const latest = statuses[0]; // First item is most recent
+
+            document.getElementById('statusText').textContent = latest.status;
+
+            //const timestamp = new Date(latest.timestamp);
+            //document.getElementById('statusTimestamp').textContent =
+                //`Updated: ${timestamp.toLocaleDateString()} ${timestamp.toLocaleTimeString()}`;
+        }
+    } catch (error) {
+        console.error('Error loading status:', error);
+        document.getElementById('statusText').textContent = 'Failed to load status';
+    }
+}
+
+loadLatestStatus();
+// Auto-refresh every 5 minutes
+setInterval(loadLatestStatus, 300000);
+
+
+
+// Calculate proper animation duration based on content width
+const ticker = document.querySelector('.ticker-abt');
+const wrapper = document.querySelector('.ticker-wrapper-abt');
+
+if (ticker && wrapper) {
+    const tickerWidth = ticker.scrollWidth / 2; // Half because we have duplicates
+    const wrapperWidth = wrapper.offsetWidth;
+
+    // Speed in pixels per second (adjust this number)
+    const speed = 47; // Lower = slower, Higher = faster
+    const duration = tickerWidth / speed;
+
+    ticker.style.animation = `scroll ${duration}s linear infinite`;
+}
+
+    window.addEventListener('load', function() {
+    const ticker = document.querySelector('.ticker-abt');
+    if (ticker) {
+        // Force recalculation after images load
+        ticker.style.animation = 'none';
+
+        // Trigger reflow
+        ticker.offsetHeight;
+
+        // Restart animation
+        ticker.style.animation = '';
+    }
+});
+
+     // Screen
+    document.querySelector('.off-button').addEventListener('click', function() {
+    const screen = document.querySelector('.monitor-screen');
+
+    if (screen.src.includes('J&C.jpeg')) {
+        screen.src = 'images/glt_sleep.jpg'; // Static
+    } else {
+        screen.src = 'images/J&C.jpeg'; // Back on
+    }
+});
+
+</script>
+</body>
+
+
+</html>
