@@ -42,6 +42,38 @@ const artworks = [
   {
     img: "images/fruit_art.jpg",
     link: "https://x.com/ishidzuki655"
+  },
+  {
+    img: "images/guitaa.jpg",
+    link: "https://x.com/fishieguy"
+  },
+  {
+    img: "images/doobert.jpg",
+    link: "https://x.com/12m12g26"
+  },
+  {
+    img: "images/daylied.jpg",
+    link: "https://x.com/_senby_"
+  },
+  {
+    img: "images/paulie.jpg",
+    link: "https://x.com/stttane_cK0"
+  },
+  {
+    img: "images/tak.png",
+    link: "https://x.com/db_witch"
+  },
+  {
+    img: "images/lucas.png",
+    link: "https://x.com/huslu13"
+  },
+  {
+    img: "images/hardd.jpg",
+    link: "https://x.com/NessieMooo"
+  },
+  {
+    img: "images/denji.jpg",
+    link: "https://x.com/Fico_Rakugaki"
   }
 ];
 

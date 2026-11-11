@@ -511,7 +511,7 @@ height: 30px;
 .nav-menu {
     position: absolute;
     width: 181px;
-    height: 306px;
+    height: 366px;
     left: -200px;
     top: -2.75px;
     z-index:100;
@@ -522,7 +522,7 @@ height: 30px;
     box-sizing: border-box;
     position: absolute;
     width: 174px;
-    height: 300px;
+    height: 360px;
     left: 0px;
     top: 0px;
     background: #323538;
@@ -535,6 +535,7 @@ height: 30px;
 .nav-text-videos,
 .nav-text-me,
 .nav-text-essays,
+.nav-text-design,
 .nav-text-status {
     position: absolute;
     left: 80px;
@@ -578,8 +579,14 @@ height: 30px;
     line-height: 35px;
 }
 
+.nav-text-design {
+    top: 240px;
+    font-weight: 400;
+    line-height: 35px;
+} /* <-- Fixed: Added missing closing brace */
+
 .nav-text-status {
-    top: 250px;
+    top: 300px; /* Adjusted slightly for consistent spacing */
     font-weight: 500;
     line-height: 28px;
 }
@@ -622,14 +629,21 @@ height: 30px;
     top: 182px;
 }
 
+.nav-icon-design {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    left: 15px;
+    top: 232px;
+}
+
 .nav-icon-status {
     position: absolute;
     width: 52px;
     height: 52px;
     left: 15px;
-    top: 238px;
+    top: 295px; /* Shifted down to match the status text position */
 }
-
 
 /* Current Status */
 .status-frame {

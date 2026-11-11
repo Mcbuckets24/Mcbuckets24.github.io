@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essays</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/hxi4phm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="page-wrapper">
+  <div class="header-frame">
+    <div class="header-box">
+        <div class="gray-square"></div>
+        <img src="images/avatar_sit.png" alt="Peronal Avatar sitting" class="avatar-image">
+    </div>
+</div>
+
+
+    <div class = "cd-wrapper">
+        <img src="images/cd_spin.gif" alt="CD" class="cd-image">
+    </div>
+
+<div class="credits"><p><a href="credits.html">Credits</a></p></div>
+
+
+<div class="info-box">
+
+    <!-- Nav Menu -->
+     <nav class="nav-menu">
+    <div class="nav-box">
+        <img src="images/home_nav.png" alt="Home icon" class="nav-icon-home">
+        <p class="nav-text-home"><a href="index.html">Home</a></p>
+
+        <img src="images/me_nav.png" alt="Me icon" class="nav-icon-me">
+        <p class="nav-text-me"><a href="about.html">Me?!</a></p>
+
+        <img src="images/videos_nav.png" alt="Videos icon" class="nav-icon-videos">
+        <p class="nav-text-videos"><a href="videos.html">Videos</a></p>
+
+        <img src="images/essay_nav.png" alt="Essays icon" class="nav-icon-essays">
+        <p class="nav-text-essays"><a href="essays.html">Essays</a></p>
+
+        <img src="images/design_icon.png" alt="Design icon" class="nav-icon-design">
+        <p class="nav-text-design"><a href="design.html">Design</a></p>
+
+        <img src="images/status_nav.png" alt="Status icon" class="nav-icon-status">
+        <p class="nav-text-status"><a href="status.html">Status</a></p>
+    </div>
+</nav>
+
+
+    <!-- All Statuses List -->
+    <div class="status-list-container">
+        <h2 class="status-list-title">Design Projects and Outside Work</h2>
+       <ul class="essay-list">
+           <div class="essay-block">
+    <li class="essay-item">
+        <img src="images/zine.png" alt="Zine home page" class="essay-image">
+
+        <div class="essay-content">
+            <h3 class="essay-title"><a href="https://www.blueprintzine.org/" target="_blank">Blueprint Zine</a></h3>
+            <p class="essay-subtitle">University VIP project to publish students art, essays, videos etc. I've worked on designing the zine itself as well as developing its webpage</p>
+        </div>
+        </div>
+    </li>
+
+    <div class="essay-block">
+    <li class="essay-item">
+        <img src="images/cradifn.jpg" alt="Custom Card Designs" class="essay-image">
+
+        <div class="essay-content">
+            <h3 class="essay-title"><a href= DMUY1123_fa26_JakeGiuliana_facecard_revised3.aim>Card Design (AI File Download)</h3></a>
+            <p class="essay-subtitle">Custom full set of playing cards made for a university class</p>
+        </div>
+        </div>
+    </li>
+
+           <div class="essay-block">
+           <li class="essay-item">
+        <img src="images/maplet_prev.png" alt="Maplet home page" class="essay-image">
+
+        <div class="essay-content">
+            <h3 class="essay-title">Maplet (WIP)</h3>
+            <p class="essay-subtitle">Current website I've been developing. Map based photo saving and memory tracking platform</p>
+        </div>
+               </div>
+
+    </li>
+</ul>
+    </div>
+
+
+
+<div class="status-frame">
+        <div class="status-box">
+            <h3 class="status-title">Current Status:</h3>
+            <p class="status-text" id="statusText">Loading...</p>
+        </div>
+</div>
+</div>
+    </div>
+
+
+
+
+
+<script>
+    async function loadLatestStatus() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/Mcbuckets24/Status-Tracker/main/statuses.json?' + Date.now());
+        const statuses = await response.json();
+
+        if (statuses.length > 0) {
+            const latest = statuses[0]; // First item is most recent
+
+            document.getElementById('statusText').textContent = latest.status;
+
+            //const timestamp = new Date(latest.timestamp);
+            //document.getElementById('statusTimestamp').textContent =
+                //`Updated: ${timestamp.toLocaleDateString()} ${timestamp.toLocaleTimeString()}`;
+        }
+    } catch (error) {
+        console.error('Error loading status:', error);
+        document.getElementById('statusText').textContent = 'Failed to load status';
+    }
+}
+
+loadLatestStatus();
+// Auto-refresh every 5 minutes
+setInterval(loadLatestStatus, 300000);
+</script>
+
+</body>
